@@ -42,7 +42,8 @@ namespace ToDo
             command.CommandText = "SELECT [Id] ,[ToDoTitle] ,[ToDoDetail] ,[ToDoDueDate] ,[Status] FROM [dbo].[ToDos] ";
 
             connection.Open();
-            SqlDataReader reader = command.ExecuteReader(); 
+            SqlDataReader reader = command.ExecuteReader();
+            //SELECT [id] ,[UserName] ,[Password] FROM [dbo].[Users]    
             while (reader.Read())
             {
                 todo = new Todo
