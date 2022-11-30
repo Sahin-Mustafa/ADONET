@@ -75,7 +75,7 @@ namespace ToDo
             todo.Status = false;
 
            
-            string query = $"INSERT INTO [dbo].[ToDos] ([Id],[ToDoTitle] ,[ToDoDetail] ,[ToDoDueDate] ,[Status]) VALUES ('{todo.ToDoId}','{todo.ToDoTitle}' ,'{todo.ToDoDetail}' ,'{todo.ToDoDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff")}' ,'{todo.Status}')";
+            string query = $"INSERT INTO [dbo].[ToDos] ([ToDoTitle] ,[ToDoDetail] ,[ToDoDueDate] ,[Status]) VALUES ('{todo.ToDoTitle}' ,'{todo.ToDoDetail}' ,'{todo.ToDoDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff")}' ,'{todo.Status}')";
             command.CommandText = query;
 
 
