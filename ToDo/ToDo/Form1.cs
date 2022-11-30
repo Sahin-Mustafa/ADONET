@@ -1,4 +1,5 @@
 
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace ToDo
 
         private void formLogin_Load(object sender, EventArgs e)
         {
-            connection.ConnectionString = "Server=DESKTOP-TGAGQ1J\\SQLEXPRESS;Database=ToDoApp;Trusted_Connection=True;";
+            connection.ConnectionString = "Server=.\\SABAHMS;Database=ToDoApp;Trusted_Connection=True;";
             command.Connection = connection;
             LoadCategories();
 
@@ -46,11 +47,16 @@ namespace ToDo
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
-            command.CommandText = $"SELECT * FROM [dbo].[Users] WHERE [UserName]='{txtUserName.Text}' AND [Password]= '{txtPassword.Text}' ";
+            string username = txtUserName.Text.Trim();
+            string password = txtPassword.Text.Trim();
+
+            command.CommandText = "SELECT * FROM [dbo].[Users] WHERE [UserName]=@uname AND [Password]= @pass ";
+            command.Parameters.AddWithValue("uname", username);
+            command.Parameters.AddWithValue("pass", password);
+
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
-            if(reader.Read())
+            if (reader.Read())
             {
                 Home home = new Home();
                 this.Hide();
@@ -58,7 +64,7 @@ namespace ToDo
             }
             else
                 MessageBox.Show("Hatalý giris yaptýnýz");
-            
+
             connection.Close();
 
         }
