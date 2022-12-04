@@ -1,0 +1,9 @@
+USE[master]
+--GO
+
+IF NOT EXISTS(SELECT * FROM master.sys.databases WHERE name='Expenses')
+BEGIN
+--GO
+CREATE DATABASE [Expenses]
+--GO
+END
