@@ -1,16 +1,32 @@
+# Note
+
+ 1. In order for the application to work, you must edit the database server name according to your own.
+ 2. You should add the '**master**.txt' and '**expenseDbo.txt**' files to the **Expenses\Expenses\bin\Debug\net6.0-windows** working directory of the application folder.
+
 # Expense Application
 
 In this application, expense transactions were made according to the task types of the personnel in a company.
+
+  
+  
 
 ## Login page
 
 Registered personnel can log in with their username and password. The information is kept in a **database**. New staff can be created. Each staff member has a unique number.
 
+  
+
 ## Home Page
+
+  
 
 The page where the personnel can take action according to their duties
 
+  
+
 ### Worker
+
+  
 
 - Can only see their own spending.
 
@@ -18,23 +34,30 @@ The page where the personnel can take action according to their duties
 
 - It can delete and update its approved or paid expenditures.
 
+  
+
 ### Manager
 
-- It can see the expenses other than the expenses that have been paid for.
+  
 
-- The expenses entered are registered as approved.
+ - It can see the expenses other than the expenses that have been paid for.
 
-- It can only update or delete her own expenses and outstanding expenses.
+ - The expenses entered are registered as approved.
 
-- It can approve or reject the expenditures of worker type personnel.
+ - It can only update or delete her own expenses and outstanding expenses.
 
+ - It can approve or reject the expenditures of worker type personnel.
 * It can an enter report page. Report list :
-  - Total Expenditures by Employees
-  - Total Expense by years
-  - Total Expenditures of the employee by year
-  - Expenses paid
-  - Unpaid expenses
-  - Expenditures data by employees
+  * Total Expenditures by Employees
+  * Total Expense by years
+  * Total Expenditures of the employee by year
+  * Expenses paid
+  * Unpaid expenses
+  * Expenditures data by employees
+
+ 
+
+  
 
 ### Accountant
 
