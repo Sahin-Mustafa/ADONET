@@ -37,7 +37,7 @@ namespace ToDo
         {
             todos.Clear();
             lstTodos.Items.Clear();
-            connection.ConnectionString = "Server=DESKTOP-TGAGQ1J\\SQLEXPRESS;Database=ToDoApp;Trusted_Connection=True;";
+            connection.ConnectionString = "Server=.\\SABAHMS;Database=ToDoApp;Trusted_Connection=True;";
             command.Connection = connection;
             command.CommandText = "SELECT [Id] ,[ToDoTitle] ,[ToDoDetail] ,[ToDoDueDate] ,[Status] FROM [dbo].[ToDos] ";
 
@@ -69,13 +69,13 @@ namespace ToDo
                 return;
             }
             Todo todo = new Todo();
-            todo.ToDoId = todos.Count + 1;
+            //todo.ToDoId = todos.Count + 1;
             todo.ToDoTitle = txtToDoTitle.Text;
-            todo.ToDoDetail =txtDescription.Text;
-            todo.ToDoDueDate =dtpDueDate.Value;
+            todo.ToDoDetail = txtDescription.Text;
+            todo.ToDoDueDate = dtpDueDate.Value;
             todo.Status = false;
 
-           
+
             string query = $"INSERT INTO [dbo].[ToDos] ([ToDoTitle] ,[ToDoDetail] ,[ToDoDueDate] ,[Status]) VALUES ('{todo.ToDoTitle}' ,'{todo.ToDoDetail}' ,'{todo.ToDoDueDate.ToString("yyyy-MM-dd HH:mm:ss.fff")}' ,'{todo.Status}')";
             command.CommandText = query;
 
@@ -84,15 +84,15 @@ namespace ToDo
             connection.Open();
             int effectedRowsCount = command.ExecuteNonQuery();
             connection.Close();
-            if (effectedRowsCount > 0) 
+            if (effectedRowsCount > 0)
             {
                 LoadToDosData();
                 MessageBox.Show("New ToDo added to list");
             }
             else
                 MessageBox.Show("New ToDo didn't add to list");
-            lstTodos.SelectedIndex= -1;
-            
+            lstTodos.SelectedIndex = -1;
+
 
         }
 
@@ -100,14 +100,14 @@ namespace ToDo
         {
             if (lstTodos.SelectedIndex > -1)
             {
-            todo = (Todo)lstTodos.SelectedItem;
-            //MessageBox.Show($"{todo.ToDoId}");
-            txtUpdateTitle.Text = todo.ToDoTitle;
-            txtUpdatDesc.Text = todo.ToDoDetail;
-            dtpUpdate.Value = todo.ToDoDueDate;
-            cbStatus.Checked = todo.Status;
+                todo = (Todo)lstTodos.SelectedItem;
+                //MessageBox.Show($"{todo.ToDoId}");
+                txtUpdateTitle.Text = todo.ToDoTitle;
+                txtUpdatDesc.Text = todo.ToDoDetail;
+                dtpUpdate.Value = todo.ToDoDueDate;
+                cbStatus.Checked = todo.Status;
             }
-            
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace ToDo
                     MessageBox.Show("Delete is Unsuccessful");
                 }
             }
-            
+
         }
     }
 }

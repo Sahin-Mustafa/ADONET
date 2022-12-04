@@ -171,7 +171,7 @@
             this.groupBox2.Size = new System.Drawing.Size(247, 245);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Add ToDo";
+            this.groupBox2.Text = "Update ToDo";
             // 
             // cbStatus
             // 
