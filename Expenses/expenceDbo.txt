@@ -1,0 +1,58 @@
+
+IF NOT EXISTS (SELECT * FROM Expenses.sys.tables  where name='employees' OR name='Expenses')
+BEGIN
+PRINT 'TEST'
+USE [Expenses]
+--GO
+/****** Object:  Table [dbo].[Employees]    Script Date: 2.12.2022 10:48:50 ******/
+SET ANSI_NULLS ON
+--GO
+SET QUOTED_IDENTIFIER ON
+--GO
+CREATE TABLE [dbo].[Employees](
+	[GuideEmployeeId] [uniqueidentifier] NOT NULL,
+	[EmployeeFullName] [nvarchar](50) NOT NULL,
+	[EmployeePassword] [nvarchar](16) NOT NULL,
+	[EmployeeType] [nvarchar](25) NOT NULL,
+	[EnterExpence] [bit] NOT NULL,
+	[Approves] [bit] NOT NULL,
+	[CanPay] [bit] NOT NULL,
+	CONSTRAINT [PK_Employees] PRIMARY KEY CLUSTERED 
+(
+	[GuideEmployeeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+--GO
+/****** Object:  Table [dbo].[Expenses]    Script Date: 2.12.2022 10:48:50 ******/
+SET ANSI_NULLS ON
+--GO
+SET QUOTED_IDENTIFIER ON
+--GO
+CREATE TABLE [dbo].[Expenses](
+	[ExpenseId] [uniqueidentifier] NOT NULL,
+	[Spender_Id] [uniqueidentifier] NOT NULL,
+	[Spender_Name] [nvarchar](25) NOT NULL,
+	[Expense_Date] [datetime] NOT NULL,
+	[Expense_Title] [nvarchar](50) NOT NULL,
+	[Expense_Detail] [nvarchar](200) NOT NULL,
+	[Amount] [decimal](8, 2) NOT NULL,
+	[Status] [nvarchar](10) NOT NULL,
+	CONSTRAINT [PK_Expenses] PRIMARY KEY CLUSTERED 
+(
+	[ExpenseId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+--GO
+ALTER TABLE [dbo].[Employees] ADD  CONSTRAINT [DF_Employees_GuideEmployeeId]  DEFAULT (newid()) FOR [GuideEmployeeId]
+--GO
+ALTER TABLE [dbo].[Employees] ADD  CONSTRAINT [DF_Employees_EnterExpence]  DEFAULT ((1)) FOR [EnterExpence]
+--GO
+ALTER TABLE [dbo].[Employees] ADD  CONSTRAINT [DF_Employees_Approves]  DEFAULT ((0)) FOR [Approves]
+--GO
+ALTER TABLE [dbo].[Employees] ADD  CONSTRAINT [DF_Employees_CanPay]  DEFAULT ((0)) FOR [CanPay]
+--GO
+ALTER TABLE [dbo].[Expenses] ADD  CONSTRAINT [DF_Expenses_ExpenseId]  DEFAULT (newid()) FOR [ExpenseId]
+--GO
+ALTER TABLE [dbo].[Expenses] ADD  CONSTRAINT [DF_Expenses_Expense_Date]  DEFAULT (getdate()) FOR [Expense_Date]
+--GO
+END
